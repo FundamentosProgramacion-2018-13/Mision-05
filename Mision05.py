@@ -59,7 +59,6 @@ def dibujarA():
             if event.type == pygame.QUIT:
                 run = False
                 pygame.quit()
-                main()
 
 
 # Dibuja del punto más grande de un eje al más pequeño del otro para todos los cuadrantes
@@ -159,7 +158,6 @@ def dibujarC():
             if event.type == pygame.QUIT:
                 run = False
                 pygame.quit()
-                main()
 
 
 # En las aristas de un dodecágono de radio 150, dibuja 12 círculos
@@ -193,16 +191,14 @@ def dibujarD():
             if event.type == pygame.QUIT:
                 run = False
                 pygame.quit()
-                main()
 
 
 # Usando fórmula dada por el profesor, se aproxima al valor de PI
-def calcularPi():
-    maximo = int(input("Valor del último divisor: "))
+def calcularPi(maximo):
     total = 0.
     for n in range(1, maximo+1):
         total = total + (1/n ** 4)
-    print("El valor calculado de Pi es: %f" % ((90 * total) ** .25))
+    return total
 
 
 # Comprueba si son divisibles entre 19 a todos los números de 3 dígitos con un contador
@@ -211,7 +207,7 @@ def comprobarNumerosDeTresDigitos():
     for n in range(100, 1000):
         if n % 19 == 0:
             numeroQueEs = numeroQueEs + 1
-    print("La cántidad de enteros divisibles entre 3 conformados por 3 dígitos es: %d" % numeroQueEs)
+    return numeroQueEs
 
 
 # Aunque usted no lo crea, hace las pirámides de números
@@ -220,15 +216,14 @@ def hacerPiramidesDeNumeros():
     for i in range(9):
         print("%d * 8 + %d = %d" % (ultimoValor*10+i+1, i+1, ((ultimoValor*10)+i+1)*8+i+1))
         ultimoValor = ultimoValor * 10 + i + 1
-    print("""
-    """)
+    print("""""")
     ultimoValor = 0
     for n in range(9):
         print("%d * %d = %d" % (ultimoValor * 10 + 1, ultimoValor * 10 + 1, (ultimoValor * 10 + 1)**2))
         ultimoValor = ultimoValor * 10 + 1
 
 
-def main():
+def leerOpcionMenu():
     instruccion = int(input("""
 Mision 5: Seleccione que quiere hacer:
 1. Dibujar cuadrados y circulos
@@ -242,26 +237,36 @@ Mision 5: Seleccione que quiere hacer:
 ¿Que desea hacer?
 - """))
 
-    if instruccion <= 4:
-        if instruccion == 1:
-            dibujarA()
-        if instruccion == 2:
-            dibujarB()
-        if instruccion == 3:
-            dibujarC()
-        if instruccion == 4:
-            dibujarD()
-    else:
-        if instruccion == 5:
-            calcularPi()
-        if instruccion == 6:
-            comprobarNumerosDeTresDigitos()
-        if instruccion == 7:
-            hacerPiramidesDeNumeros()
-        if instruccion == 0:
-            pass
+    return instruccion
+
+
+def main():
+    instruccion = leerOpcionMenu()
+
+    while instruccion != 0:
+        if instruccion <= 4:
+            if instruccion == 1:
+                dibujarA()
+            if instruccion == 2:
+                dibujarB()
+            if instruccion == 3:
+                dibujarC()
+            if instruccion == 4:
+                dibujarD()
         else:
-            main()
+            if instruccion == 5:
+                maximo = int(input("Valor del último divisor: "))
+                print("El valor calculado de Pi es: %f" % ((90 * calcularPi(maximo)) ** .25))
+            if instruccion == 6:
+                print(
+                            "La cántidad de enteros divisibles entre 3 conformados por 3 dígitos es: %d" % comprobarNumerosDeTresDigitos())
+            if instruccion == 7:
+                hacerPiramidesDeNumeros()
+            else:
+                print("Error en la entrada, intente de nuevo")
+        instruccion = leerOpcionMenu()
+
+    print("Termina programa")
 
 
 main()
