@@ -108,6 +108,10 @@ def eleccionUsuario (eleccion):
         print ("Los numeros de 3 digitos divisibles entre 19 son: ", calcularDivisibles())
     elif eleccion == 7:
         calcularOperaciones()
+    elif eleccion == 8:
+        print("Exit")
+    else:
+        print("Error")
 
 
 
@@ -138,9 +142,9 @@ def dibujar(eleccion):
         elif eleccion == 2:
             dibujarEstrella(ventana)
         elif eleccion == 3:
-            cuadro(ventana)
-        elif eleccion == 4:
             dibujarParabola(ventana)
+        elif eleccion == 4:
+            dibujarCirculos(ventana)
 
         pygame.display.flip()  # Actualiza trazos (Si no llamas a esta función, no se dibuja)
         reloj.tick(40)  # 40 fps
@@ -161,8 +165,7 @@ def main():
     7. Imprimir piramides de numeros
     8. Salir
 
-    ¿Que desea hacer?:
-    """))
+    ¿Que desea hacer?: """))
     eleccionUsuario(eleccion)
 
 # Llamas a la función principal
