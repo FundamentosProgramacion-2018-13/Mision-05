@@ -1,6 +1,6 @@
 # encoding: UTF-8
 # Autor: Diego Palmerín Bonada, A01747290
-# Descripción: Funciones que dibujan distintas cosas usando Pygame
+# Descripción: Funciones que dibujan distintas cosas usando Pygame e imprimen datos y calculos en la consola
 
 # Importar librerías necesarias
 import pygame
