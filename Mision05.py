@@ -258,8 +258,7 @@ def main():
                 maximo = int(input("Valor del último divisor: "))
                 print("El valor calculado de Pi es: %f" % ((90 * calcularPi(maximo)) ** .25))
             if instruccion == 6:
-                print(
-                            "La cántidad de enteros divisibles entre 3 conformados por 3 dígitos es: %d" % comprobarNumerosDeTresDigitos())
+                print("La cántidad de enteros divisibles entre 3 conformados por 3 dígitos es: %d" % comprobarNumerosDeTresDigitos())
             if instruccion == 7:
                 hacerPiramidesDeNumeros()
             else:
