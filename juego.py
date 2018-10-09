@@ -1,3 +1,6 @@
+# Autor: Alex Serrano Durán
+# Este programa completa una variedad de tareas mediante ciclos. También usa un menú para que el usuario escoja la tarea
+
 import pygame
 import random
 import math
