@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # Autor: Jocelyn López Ortíz
 # Misión 5: Funciones con for
 
@@ -24,14 +23,13 @@ def dibujarCuadrosYCirculos(ventana):
 
 def dibujarParabolas(ventana):
     for delta in range(0, ALTO // 2, 10):
-        pygame.draw.line(ventana, (random.randrange(255), random.randrange(255), random.randrange(255)),
-                         (ANCHO // 2, delta), (ANCHO // 2 - delta, ALTO // 2))
-        pygame.draw.line(ventana, (random.randrange(255), random.randrange(255), random.randrange(255)),
-                         (ANCHO // 2, delta), (ANCHO // 2 + delta, ALTO // 2))
-        pygame.draw.line(ventana, (random.randrange(255), random.randrange(255), random.randrange(255)),
-                         (ANCHO // 2, ALTO - delta), (ANCHO // 2 + delta, ALTO // 2))
-        pygame.draw.line(ventana, (random.randrange(255), random.randrange(255), random.randrange(255)),
-                         (ANCHO // 2, ALTO - delta), (ANCHO // 2 - delta, ALTO // 2))
+
+        colorRandom = (random.randrange(255), random.randrange(255), random.randrange(255))
+
+        pygame.draw.line(ventana, colorRandom, (ANCHO // 2, delta), (ANCHO // 2 - delta, ALTO // 2))
+        pygame.draw.line(ventana, colorRandom, (ANCHO // 2, delta), (ANCHO // 2 + delta, ALTO // 2))
+        pygame.draw.line(ventana, colorRandom, (ANCHO // 2, ALTO - delta), (ANCHO // 2 + delta, ALTO // 2))
+        pygame.draw.line(ventana, colorRandom, (ANCHO // 2, ALTO - delta), (ANCHO // 2 - delta, ALTO // 2))
 
 
 def dibujarEspiral(ventana):
@@ -114,9 +112,9 @@ def imprimirPiramides():
         resultado = multiplicacion * multiplicacion
         print(multiplicacion, "*", multiplicacion, "=", resultado)
         valor = valor * 10 + 1
-
-
-def main():
+        
+        
+def leerOpcionMenu():
     print("Misión 5. Seleccione qué quiere hacer.")
     print("1. Dibujar cuadros y círculos")
     print("2. Dibujar parábolas")
@@ -127,27 +125,30 @@ def main():
     print("7. Imprimir pirámides de números")
     print("0. Salir")
     numero = int(input("¿Qué desea hacer? "))
+    return numero
 
-    if numero > 0 and numero <5:
-        dibujar(numero)
-    elif numero == 5:
-        terminos = (int(input("Términos que deseas usar: ")))
-        aproximacionPI = aproximarValorPI(terminos)
-        print("PI = %f" % (aproximacionPI))
-    elif numero == 6:
-        divisibles = contarDivisibles()
+
+def main():
+    numero = leerOpcionMenu()
+    while numero != 0:
+        if numero > 0 and numero < 5:
+            dibujar(numero)
+        elif numero == 5:
+            terminos = (int(input("Términos que deseas usar: ")))
+            aproximacionPI = aproximarValorPI(terminos)
+            print("PI = %f" % (aproximacionPI))
+        elif numero == 6:
+            divisibles = contarDivisibles()
+            print("Hay %d números de 3 dígitos divisibles entre 19" % divisibles)
+        elif numero == 7:
+            imprimirPiramides()
+        else:
+            print()
+            print("Error")
+            print("Elija otra opción")
         print()
-        print("Hay %d números de 3 dígitos divisibles entre 19" %divisibles)
-    elif numero == 7:
-        imprimirPiramides()
-    elif numero== 0:
-        pass
-    else:
-        print()
-        print("Error")
-        print("Elija otra opción")
-
-
+        numero = leerOpcionMenu()
+    print("Fin del programa c:")
 
 
 # Llamas a la función principal
