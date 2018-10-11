@@ -261,7 +261,7 @@ def main():
                 print("La cántidad de enteros divisibles entre 3 conformados por 3 dígitos es: %d" % comprobarNumerosDeTresDigitos())
             if instruccion == 7:
                 hacerPiramidesDeNumeros()
-            else:
+            if instruccion > 7 or type(instruccion) is not int:
                 print("Error en la entrada, intente de nuevo")
         instruccion = leerOpcionMenu()
 
