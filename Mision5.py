@@ -30,7 +30,6 @@ def dibujarCirculosCuadrados(ventana):
         pygame.draw.circle(ventana, NEGRO, (400, 400), radio, 1)
 
 
-
 #Dibuja una espiral en la pantalla
 def dibujarEspiral(ventana):
     x = 400
@@ -105,6 +104,7 @@ def aproximarPI(terminos):
     aproximacion = (suma * 90) ** 0.25
     return aproximacion
 
+
 #Calcula los números de tres dígitos divisibles entre 19
 def numerosDivisibles():
     contador = 0
@@ -115,6 +115,7 @@ def numerosDivisibles():
         else:
             pass
     return contador
+
 
 #Calcula dos pirámides de numeros
 def calcularPiramide1():
