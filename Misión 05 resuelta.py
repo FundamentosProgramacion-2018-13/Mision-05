@@ -169,7 +169,6 @@ def leerOpcionMenu():
 # Función principal, aquí resuelves el problema
 def main():
     opcion= leerOpcionMenu()
-    ventana = pygame.display.set_mode((ANCHO, ALTO))
     while opcion!= 0:
         if opcion == 1:
             dibujarCuadradoYCirculos()
