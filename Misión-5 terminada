@@ -1,9 +1,8 @@
 # Autor: Luisa Fernanda Arellano Alvarado A01377974
 # Misión 5 (Figuras, ciclos, cadenas)
-
-import pygame  # Para cuadros/circulos, espiral y diamante
-import math  # Para circulos
-import random #colores al azar
+import math
+import pygame
+import random
 
 ANCHO = 800  # variable constante
 ALTO = 800  # variable constante
@@ -80,10 +79,10 @@ def mostrarSecdos():
 def main():
         opcion = -1
         while (opcion != 0):
-            opcion = int(input('''
+         opcion = int(input('''
             -----------------------------------------------
             Misión 5. Seleccione qué quiere hacer
-            1. Dibujar Dibujar cuadro y círculo
+            1. Dibujar Dibujar cuadros y círculos
             2. Cibujar parábolas
             3. Dibujar espiral
             4. Dibujar círculos
@@ -94,28 +93,27 @@ def main():
             -----------------------------------------------
             ¿Qué desea hacer?
              '''))
-            if opcion == 1:
-                dibujarCuadradosCirculos(opcion)
-            elif opcion == 2:
-                dibujarDiamante(opcion)
-            elif opcion == 3:
-                dibujarEspiral(opcion)
-            elif opcion == 4:
-                dibujarCirculos(opcion)
-            elif opcion == 5:
-                terminos = int(input("teclea cuantos terminos quieres:"))
-                aproximaciónPI = AproximarValorPI(terminos)
-                print("PI =", aproximaciónPI)
-            elif opcion == 6:
-                Numero = 0  # Contador
-                for numero in range(100, 1000):  # Los números van de 100 a 999
+        if opcion == 1:
+                dibujarCuadradosCirculos()
+        elif opcion == 2:
+                dibujarDiamante()
+        elif opcion == 3:
+                dibujarEspiral()
+        elif opcion == 4:
+                dibujarCirculos()
+        elif opcion == 5:
+            terminos = int(input("teclea cuantos terminos quieres:"))
+            aproximaciónPI = AproximarValorPI(terminos)
+            print("PI =", aproximaciónPI)
+        elif opcion == 6:
+            Numero = 0  # Contador
+            for numero in range(100, 1000):  # Los números van de 100 a 999
                     if esMultiplo(numero):
-                        print("%03d es" % (numero), end="")
-                        print(" Multiplo de 19")
-                        Numero += 1
-                print("Hay: %d multiplos de 19 con 3 digitos" % (Numero))
-            elif opcion == 7:
-                mostrarSecUno()
-            elif opcion == 0:
-                print("Adios!! :)")
-        
+                       print("%03d es" % (numero), end="")
+                       print(" Multiplo de 19")
+                    Numero += 1
+                    print("Hay: %d multiplos de 19 con 3 digitos" % (Numero))
+        elif opcion == 7:
+            mostrarSecUno()
+        elif opcion == 0:
+          print("Adios!! :)")
