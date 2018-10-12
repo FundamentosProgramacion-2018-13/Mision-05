@@ -1,4 +1,4 @@
-# Autor: Erick David Ramírez Martínez
+# Autor: Erick David Ramírez Martínez, A01748155, Grupo: 02
 # Programa que muestra un menu con diferentes acciones, pregunta al usuario cual desea realizar, las realiza y
 # vuelve al menu, hasta que el usuario decida salir
 
