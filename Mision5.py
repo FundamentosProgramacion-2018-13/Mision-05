@@ -2,9 +2,11 @@
 # Es un programa que tiene un menu con diferentes opciones que seleccionar. Y cada una de ellas
 # llama a un programa en particular.
 
+
 import pygame   # Librería de pygame
 import random   # Libreria para numeros al azar
 import math     # Libreria para matemáticas de python
+
 
 # Dimensiones de la pantalla
 ANCHO = 800
