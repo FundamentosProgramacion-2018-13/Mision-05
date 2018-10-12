@@ -153,8 +153,6 @@ def main():
 
     while not seleccion == 0:
 
-        #seleccion = int(input("¿Qué desea hacer? "))
-
         if seleccion == 1 or seleccion == 2 or seleccion == 3 or seleccion == 4:
             dibujarFiguras(seleccion)
             print()
