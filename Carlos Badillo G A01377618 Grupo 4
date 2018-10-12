@@ -1,0 +1,145 @@
+#   Carlos Badillo García
+#   Programa que lanza el resultado de la función solicitada por el usuario
+
+import pygame
+import math
+import random
+
+alto = 800
+ancho = 800
+negro = (0, 0, 0)
+blanco = (255, 255, 255)
+
+
+def dibujarCuadrosCirculos(pantalla): #Función que dibuja cuadros y circulos
+    for x in range(80):
+        pygame.draw.rect(pantalla, negro, (400 - (x*5), 400 - (x*5), x*10, x*10), 1)
+    for y in range(10, 400, 10):
+        pygame.draw.circle(pantalla, negro, (400, 400), y, 1)
+
+
+def dibujarParabolas(pantalla): #Función que dibuja parabolas
+    for x in range(0, 400, 10):
+        aleatorio = random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)
+        pygame.draw.line(pantalla, aleatorio, (x, 400), (400, 400 - x))
+        pygame.draw.line(pantalla, aleatorio, (800 - x, 400), (400, 400 - x))
+        pygame.draw.line(pantalla, aleatorio, (800 - x, 400), (400, 400 + x))
+        pygame.draw.line(pantalla, aleatorio, (x, 400), (400, 400 + x))
+
+
+def dibujarEspiral(pantalla): #Función que dibuja un espiral
+    for x in range(0, 400, 10):
+        pygame.draw.line(pantalla, negro, (400-x, 400+x), (400 + 5+x, 400+x), 1)
+        pygame.draw.line(pantalla, negro, (400 - 10-x, 400 - 10-x), (400 - x-10, 400 + x+10), 1)
+    for y in range(0, 400, 10):
+        pygame.draw.line(pantalla, negro, (400 - y-10, 400 - 10-y), (400 + y+5, 400 - y-10), 1)
+        pygame.draw.line(pantalla, negro, (400 + y+5, 400+y), (400 + y+5, 400 - y-10), 1)
+
+
+def dibujarCirculos(pantalla): #Función que dibuja circulos
+    radio = 150
+    tita = 30
+    for x in range(1, 13):
+        pygame.draw.circle(pantalla, negro, ((400) + (int(radio * math.cos(math.radians(tita * x)))),
+                                             (400) + (int(radio * math.sin(math.radians(tita * x))))), radio, 1)
+
+
+def dibujar(opcion): #Función para dibujar
+    pygame.init()
+    pantalla = pygame.display.set_mode((ancho, alto))
+    reloj = pygame.time.Clock()
+    terminar = False
+
+    while not terminar:
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                terminar = True
+
+        pantalla.fill(blanco)
+
+        if opcion == 1:
+            dibujarCuadrosCirculos(pantalla)
+        if opcion == 2:
+            dibujarParabolas(pantalla)
+        if opcion == 3:
+            dibujarEspiral(pantalla)
+        if opcion == 4:
+            dibujarCirculos(pantalla)
+
+
+        pygame.display.flip()
+        reloj.tick(40)
+
+    pygame.quit()
+
+
+def aproximarPI(terminos): #Función para calcular el valor de PI
+    suma = 0
+    for x in range(1, terminos + 1):
+        suma += (1 / x**4)
+    aproxPI = (suma * 90) ** 0.25
+    print()
+    print("El valor de PI es: ", aproxPI)
+    print()
+
+
+def contarDivisibles(): #Función para calcular los números divisibles entre 19 (con tres digitos)
+    contador = 0
+    for x in range(100, 1000):
+        if x % 19 == 0:
+            contador = contador + 1
+    print()
+    print("Números con 3 digitos divisibles entre 19: ", contador)
+    print()
+
+
+def crearPiramides(): #Función que crea dos "piramides" de números
+    x = 0
+    for contador in range(1, 10):
+        nuevax = x * 10 + contador
+        x = nuevax
+        final = nuevax * 8 + contador
+        print(nuevax, "* 8 +", contador, "=", final)
+    print()
+    y = 0
+    for contador in range(1, 10):
+        nuevay = y * 10 + 1
+        y = nuevay
+        final = nuevay * nuevay
+        print(nuevay, "*", nuevay, "=", final)
+    print()
+
+
+def leerOpciones(): #Función para mostrar las opciones a escoger
+    print("Misión 5. Seleccione qué quiere hacer.")
+    print("1. Dibujar cuadros y círculos")
+    print("2. Dibujar parábolas")
+    print("3. Dibujar espiral")
+    print("4. Dibujar círculos")
+    print("5. Aproximar PI")
+    print("6. Contar divisibles entre 19")
+    print("7. Imprimir pirámides de números")
+    print("0. Salir")
+    opcion = int(input("¿Qué desea hacer?"))
+    return opcion
+
+
+def main(): #Función para correr otras funciones
+    opcion = leerOpciones()
+
+    while opcion != 0:
+        if opcion >= 1 and opcion <= 4:
+            dibujar(opcion)
+        if opcion == 5:
+            terminos = int(input("Número de términos: "))
+            aproximarPI(terminos)
+        if opcion == 6:
+            contarDivisibles()
+        if opcion == 7:
+            crearPiramides()
+
+        opcion = leerOpciones()
+    print("Termina programa")
+
+
+main()
