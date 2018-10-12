@@ -3,6 +3,8 @@
 # Muestra un menu que ofrece distintas opciones como dibujar figuras ó hacer cálculos completos
 
 import pygame   # Librería de pygame
+import random   # Libreria para cosas aleatorias
+import math     # Libreria para usar funciones trigonométricas
 
 # Dimensiones de la pantalla
 ANCHO = 800
@@ -14,9 +16,13 @@ ROJO = (255, 0, 0)      # solo rojo, nada de verde, nada de azul
 AZUL = (0, 0, 255)      # nada de rojo, ni verde, solo azul
 NEGRO = (0, 0, 0)       # Ausencia de color o sea negro
 
+# Función para poner colores aleatorios
+def colorRandom():
+    return random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)
 
-# Estructura básica de un programa que usa pygame para dibujar
-def dibujar():
+
+# Función que dibuja la figura 1
+def dibujarCuadrosCirculos():
     # Inicializa el motor de pygame
     pygame.init()
     # Crea una ventana de ANCHO x ALTO
@@ -32,16 +38,19 @@ def dibujar():
 
         # Borrar pantalla
         ventana.fill(BLANCO)
-        dibujarCuadrosyCirculos(ventana)      # Llamo a la función para que realize el dibujo dentro de pygame
+        # Hace el dibujo
+        for DELTA in range(10, ALTO // 2, 10):
+            pygame.draw.rect(ventana, NEGRO, (ANCHO // 2 - DELTA, ALTO // 2 - DELTA, 2 * DELTA, 2 * DELTA), 1)
+        for radio in range(10, ALTO // 2, 10):
+            pygame.draw.circle(ventana, NEGRO, (ANCHO // 2, ALTO // 2), radio, 1)
 
         pygame.display.flip()  # Actualiza trazos (Si no llamas a esta función, no se dibuja)
         reloj.tick(40)  # 40 fps
 
-    # Después del ciclo principal
     pygame.quit()  # termina pygame
 
 
-# Función principal, aquí resuelves el problema
+    # Función del menú de opciones
 def leerOpcionMenu():
     print("Menú principal")
     print("1. Dibujar cuadros y circulos")
@@ -57,44 +66,126 @@ def leerOpcionMenu():
     return opcion
 
 
-def dibujarCuadrosyCirculos(ventana):
-    for DELTA in range(10, ALTO // 2, 10):
-        pygame.draw.rect(ventana, NEGRO, (ANCHO // 2 - DELTA, ALTO // 2 - DELTA, 2 * DELTA, 2 * DELTA), 1)
-    for radio in range(10, ALTO // 2, 10):
-        pygame.draw.circle(ventana, NEGRO, (ANCHO // 2, ALTO // 2), radio, 1)
-
-
+# Función que dibuja la figura 2
 def dibujarParabolas():
-    pass
+    # Inicializa el motor de pygame
+    pygame.init()
+    # Crea una ventana de ANCHO x ALTO
+    ventana = pygame.display.set_mode((ANCHO, ALTO))  # Crea la ventana donde dibujará
+    reloj = pygame.time.Clock()  # Para limitar los fps
+    termina = False  # Bandera para saber si termina la ejecución, iniciamos suponiendo que no
+
+    while not termina:  # Ciclo principal, MIENTRAS la variable termina sea False, el ciclo se repite automáticamente
+        # Procesa los eventos que recibe
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:  # El usuario hizo click en el botón de salir
+                termina = True  # Queremos terminar el ciclo
+
+        # Borrar pantalla
+        ventana.fill(BLANCO)
+
+        for x in range(0, ANCHO // 2 + 5, 10):
+            pygame.draw.line(ventana, colorRandom(), (x, 400), (400, 400 - x), 1)
+            pygame.draw.line(ventana, colorRandom(), (400 + x, 400), (400, x), 1)
+            pygame.draw.line(ventana, colorRandom(), (x, 400), (400, 400 + x), 1)
+            pygame.draw.line(ventana, colorRandom(), (400 + x, 400), (400, ANCHO - x), 1)
+
+        pygame.display.flip()  # Actualiza trazos (Si no llamas a esta función, no se dibuja)
+        reloj.tick(40)  # 40 fps
+
+    pygame.quit()  # termina pygame
 
 
+# Función que dibuja la figura 3
 def dibujarEspiral():
-    pass
+        # Inicializa el motor de pygame
+        pygame.init()
+        # Crea una ventana de ANCHO x ALTO
+        ventana = pygame.display.set_mode((ANCHO, ALTO))  # Crea la ventana donde dibujará
+        reloj = pygame.time.Clock()  # Para limitar los fps
+        termina = False  # Bandera para saber si termina la ejecución, iniciamos suponiendo que no
+
+        while not termina:  # Ciclo principal, MIENTRAS la variable termina sea False, el ciclo se repite automáticamente
+            # Procesa los eventos que recibe
+            for evento in pygame.event.get():
+                if evento.type == pygame.QUIT:  # El usuario hizo click en el botón de salir
+                    termina = True  # Queremos terminar el ciclo
+
+            # Borrar pantalla
+            ventana.fill(BLANCO)
+
+            # Hace el dibujo
+            for x in range(0, ANCHO // 2, 10):
+                pygame.draw.line(ventana, NEGRO, (ANCHO // 2 - x, ANCHO // 2 + x), (405 + x, ANCHO // 2 + x), 1)
+                pygame.draw.line(ventana, NEGRO, (390 - x, 390 - x), (ANCHO // 2 - x - 10, ANCHO // 2 + x + 10), 1)
+
+            for y in range(0, ANCHO // 2, 10):
+                pygame.draw.line(ventana, NEGRO, (400 - y - 10, 390 - y), (400 + y + 5, 400 - y - 10), 1)
+                pygame.draw.line(ventana, NEGRO, (400 + y + 5, 400 + y), (400 + y + 5, 400 - y - 10), 1)
+
+            pygame.display.flip()  # Actualiza trazos (Si no llamas a esta función, no se dibuja)
+            reloj.tick(40)  # 40 fps
+
+        pygame.quit()  # termina pygame
 
 
+# Función que dibuja la figura 4
 def dibujarCirculos():
-    pass
+    # Inicializa el motor de pygame
+    pygame.init()
+    # Crea una ventana de ANCHO x ALTO
+    ventana = pygame.display.set_mode((ANCHO, ALTO))  # Crea la ventana donde dibujará
+    reloj = pygame.time.Clock()  # Para limitar los fps
+    termina = False  # Bandera para saber si termina la ejecución, iniciamos suponiendo que no
+
+    while not termina:  # Ciclo principal, MIENTRAS la variable termina sea False, el ciclo se repite automáticamente
+        # Procesa los eventos que recibe
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:  # El usuario hizo click en el botón de salir
+                termina = True  # Queremos terminar el ciclo
+
+        # Borrar pantalla
+        ventana.fill(BLANCO)
+
+        # Hace el dibujo
+        for n in range(12):
+            x = int(150 * math.cos(math.radians(-30 * (n + 1))))
+            y = int(150 * math.sin(math.radians(-30 * (n + 1))))
+            pygame.draw.circle(ventana, NEGRO, (ANCHO // 2 + x, ANCHO // 2 + y), 150, 1)
+
+        pygame.display.flip()  # Actualiza trazos (Si no llamas a esta función, no se dibuja)
+        reloj.tick(40)  # 40 fps
+
+    pygame.quit()  # termina pygame
 
 
+# Función que calcula numeros de 3 digitos divisibles entre 19
 def divisibles19():
-    divisible = 0                      #Contador
-    for total in range(1, 1000):
+    contador = 0            #Contador
+    for total in range(100, 1000):
         if total%19 == 0:
-            divisible += 1
-    print("Hay %d numeros de 3 digitos divisibles entre 19 sin contar el 0" % (divisible))
+            contador += 1
+    return contador
 
 
+# Función que hace piramides con numeros multiplicandose y los calcla
 def piramidesNumeros():
-    inicio = 1
-    for cociente in range(inicio, 112,10):
-        inicio +=1
-        total = cociente * cociente
-        print("%d * %d = %d" % (cociente, cociente, total))
+    contador = 1
+    acumulador1 = 1
+    acumulador2 = 1
+    for piramide1 in range(1, 10):
+        total = acumulador1 * 8 + contador
+        print("%d * 8 + %d = %d" % (acumulador1, contador, total))
+        contador = contador + 1
+        acumulador1 = acumulador1 * 10 + contador
+
+    for piramide2 in range(1, 10):
+        total2 = acumulador2 ** 2
+        print("%d * %d = %d" % (acumulador2, acumulador2, total2))
+        acumulador2 = acumulador2 * 10 + 1
 
 
-
-
-
+    #Función que aproxima el valor de PI
 def aproximarValorPI(terminos):
     suma = 0    # Acumulador
     for denominador in range(1, terminos + 1):
@@ -102,13 +193,12 @@ def aproximarValorPI(terminos):
 
     return(90*suma)**0.25
 
-
-
+# Función principal
 def main():
     opcion = leerOpcionMenu()
     while opcion != 0:
         if opcion == 1:
-            dibujar()
+            dibujarCuadrosCirculos()
         elif opcion == 2:
             dibujarParabolas()
         elif opcion == 3:
@@ -120,7 +210,8 @@ def main():
             aproximacionPI = aproximarValorPI(terminos)
             print("PI =", aproximacionPI)
         elif opcion == 6:
-            divisibles19()
+            total = divisibles19()
+            print("Hay %d numeros de 3 digitos divisibles entre 19" % (total))
         elif opcion == 7:
             piramidesNumeros()
         opcion = leerOpcionMenu()
@@ -128,5 +219,5 @@ def main():
     
 
 
-# Llamas a la función principal
+# Llamamos a la función principal
 main()
