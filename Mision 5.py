@@ -1,5 +1,5 @@
 #Autor: Michelle Sánchez Guerrero
-#Descripción: Programa que dibuja figuras, aproxima PI, calcula y regresa los números divisibles entre 19 e imprime pirámides de números.
+#Descripción: Programa que imprime un menú de opciones, dibuja figuras, aproxima PI, calcula y regresa los números divisibles entre 19 e imprime pirámides de números.
 
 
 import pygame
@@ -94,7 +94,6 @@ def dibujarFiguras(seleccion):
 
         elif seleccion == 4:
             dibujarCirculos(ventana)
-
 
         pygame.display.flip()
         reloj.tick(40)
