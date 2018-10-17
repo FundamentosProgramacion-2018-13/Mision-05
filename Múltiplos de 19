@@ -1,0 +1,20 @@
+# Autor: Luisa Arellano
+# Multiplos de 19 con 3 digitos
+
+
+def esMultiplo(numero):
+    if numero % 19 == 0:
+        return True
+        False
+
+
+def main():
+    Numero = 0 # Contador
+    for numero in range(100, 1000): # Los números van de 100 a 999
+        if esMultiplo(numero):
+            print("%03d es" % (numero), end="")
+            print(" Multiplo de 19")
+            Numero += 1
+    print ("Hay: %d multiplos de 19 con 3 digitos"%(Numero))
+# llamamos a la función
+main()
